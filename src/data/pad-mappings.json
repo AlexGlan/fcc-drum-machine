@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "key": "Q",
+        "name": "Heater-1",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
+    },
+    {
+        "id": 2,
+        "key": "Q",
+        "name": "Chord-1",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3"
+    },
+    {
+        "id": 3,
+        "key": "W",
+        "name": "Heater-2",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
+    },
+    {
+        "id": 4,
+        "key": "W",
+        "name": "Chord-2",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3"
+    },
+    {
+        "id": 5,
+        "key": "E",
+        "name": "Heater-3",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
+    },
+    {
+        "id": 6,
+        "key": "E",
+        "name": "Chord-3",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"
+    },
+    {
+        "id": 7,
+        "key": "A",
+        "name": "Heater-4",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
+    },
+    {
+        "id": 8,
+        "key": "A",
+        "name": "Shaker",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3"
+    },
+    {
+        "id": 9,
+        "key": "S",
+        "name": "Clap",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
+    },
+    {
+        "id": 10,
+        "key": "S",
+        "name": "Open-HH",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3"
+    },
+    {
+        "id": 11,
+        "key": "D",
+        "name": "Open-HH",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
+    },
+    {
+        "id": 12,
+        "key": "D",
+        "name": "Closed-HH",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3"
+    },
+    {
+        "id": 13,
+        "key": "Z",
+        "name": "Kick-n'-Hat",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"
+    },
+    {
+        "id": 14,
+        "key": "Z",
+        "name": "Punchy-Kick",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3"
+    },
+    {
+        "id": 15,
+        "key": "X",
+        "name": "Kick",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
+    },
+    {
+        "id": 16,
+        "key": "X",
+        "name": "Side-Stick",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3"
+    },
+    {
+        "id": 17,
+        "key": "C",
+        "name": "Closed-HH",
+        "bankPosition": "left",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
+    },
+    {
+        "id": 18,
+        "key": "C",
+        "name": "Snare",
+        "bankPosition": "right",
+        "audio": "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3"
+    }
+]
