@@ -1,0 +1,6 @@
+@use './' as *;
+
+body {
+    background-color: $clr-background;
+    font-family: $font-primary;
+}
