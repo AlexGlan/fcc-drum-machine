@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../styles/DrumPad.scss';
 
 type DrumPadProps = {
@@ -9,29 +9,40 @@ type DrumPadProps = {
 
 const DrumPad = ({ keyCap, name, audio }: DrumPadProps): JSX.Element => {
     const audioRef = useRef<HTMLAudioElement>(null);
+    const [isActive, setActive] = useState(false);
+
+    const playAnimation = (): void => {
+        setActive(!isActive)
+        setTimeout(() => { setActive((prevValue) => !prevValue); }, 100); 
+    }
 
     const playAudio = (): void => {
-        if (audioRef.current) {
+        if (audioRef.current) {    
+            playAnimation();
             audioRef.current.currentTime = 0;
-            audioRef.current.play();
+            audioRef.current.play();            
         }        
     }
 
     const handleKeyDown = (e: KeyboardEvent): void => {
         if (e.key === keyCap.toLowerCase()) {
-            playAudio();  
+            playAudio();
         }
     }
 
     useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keydown', handleKeyDown);        
         return () => {
-            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keydown', handleKeyDown);            
         }
     }, [])
         
     return (
-        <div onClick={ () => {playAudio()} } className="drum-pad" id={name}>
+        <div
+            onClick={ () => { playAudio(); } }
+            className={ isActive ? 'drum-pad active' : 'drum-pad' }
+            id={name}
+        >
             <span>{keyCap}</span>
             <audio
                 ref={audioRef}
