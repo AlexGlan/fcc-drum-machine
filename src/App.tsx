@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFreeCodeCamp } from '@fortawesome/free-brands-svg-icons';
-import DrumPad from './components/DrumPad';
+
 import data from './data/pad-mappings.json';
+import DrumPad from './components/DrumPad';
+import ToggleSwitch from './components/ToggleSwitch';
+
 import './styles/App.scss';
+
 
 const App = () => {
     const [bankPosition, setBankPosition] = useState('left');
     const [drumPadItems, setDrumPadItems] = useState<JSX.Element[]>([]);
+    const [isPowerOn, setPower] = useState(true);
 
     useEffect(() => {
         const drumPadItems: JSX.Element[] = data
@@ -16,6 +21,16 @@ const App = () => {
         
         setDrumPadItems(drumPadItems);
     }, [bankPosition])
+
+    const switchPower = (): void => {
+        // temp placeholder
+        return              
+    }
+
+    const switchBankPosition = (): void => {
+        // temp placeholder
+        return
+    }
     
     return (
         <main id="drum-machine">
@@ -24,8 +39,13 @@ const App = () => {
                 <FontAwesomeIcon icon={faFreeCodeCamp} className='top-bar__logo' />
             </div>
 
-            <div className='drum-pads'>{drumPadItems}</div>
-
+            <div className='container'>
+                <div className='left-col'>{drumPadItems}</div>
+                <div className='right-col'>
+                    <ToggleSwitch onToggle={switchPower} isToggled={true} header='Power' />
+                    <ToggleSwitch onToggle={switchBankPosition} isToggled={false} header='Bank' />
+                </div>
+            </div>                       
         </main>
     );
 }
