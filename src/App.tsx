@@ -1,35 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFreeCodeCamp } from '@fortawesome/free-brands-svg-icons';
 
 import data from './data/pad-mappings.json';
 import DrumPad from './components/DrumPad';
 import ToggleSwitch from './components/ToggleSwitch';
-
 import './styles/App.scss';
 
 
 const App = () => {
     const [bankPosition, setBankPosition] = useState('left');
-    const [drumPadItems, setDrumPadItems] = useState<JSX.Element[]>([]);
     const [isPowerOn, setPower] = useState(true);
-
-    useEffect(() => {
-        const drumPadItems: JSX.Element[] = data
-            .filter(pad => pad.bankPosition === bankPosition)
-            .map(pad => <DrumPad key={pad.id} {...pad} />);
-        
-        setDrumPadItems(drumPadItems);
-    }, [bankPosition])
-
-    const switchPower = (): void => {
-        // temp placeholder
-        return              
+       
+    const switchPower = (): void => {       
+        setPower(!isPowerOn);                      
     }
 
     const switchBankPosition = (): void => {
-        // temp placeholder
-        return
+        const newPosition: string = bankPosition === 'left' ? 'right' : 'left';
+        setBankPosition(newPosition);
     }
     
     return (
@@ -40,7 +29,19 @@ const App = () => {
             </div>
 
             <div className='container'>
-                <div className='left-col'>{drumPadItems}</div>
+                <div className='left-col'>{
+                    data.filter(pad => pad.bankPosition === bankPosition)
+                        .map(pad => {
+                            const {id, keyCap, name, audio} = pad;                            
+                            return <DrumPad
+                                key={id}
+                                keyCap={keyCap}
+                                name={name}
+                                audio={audio}
+                                power={isPowerOn}
+                            />
+                        })
+                }</div>
                 <div className='right-col'>
                     <ToggleSwitch onToggle={switchPower} isToggled={true} header='Power' />
                     <ToggleSwitch onToggle={switchBankPosition} isToggled={false} header='Bank' />
