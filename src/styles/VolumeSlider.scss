@@ -1,0 +1,56 @@
+@use './' as *;
+
+@mixin thumb-style {
+    cursor: pointer;
+    height: 1.6rem;
+    width: .5rem;
+    border-radius: .1rem;
+    background-color: $clr-blue;
+    box-shadow: .1em .1em .2em $clr-dark;       
+}
+
+@mixin track-style {
+    cursor: pointer;
+    width: 100%;
+    height: .4rem;    
+    background-color: $clr-darker-gray;
+    border: .1em solid $clr-dark;
+    box-shadow: .2em .2em .2em $clr-dark;
+}
+
+.volume-slider {
+    height: 1rem;
+    width: 80%;
+    margin: .7rem 0;
+
+    input[type=range] {
+        width: 100%;
+        background: transparent;
+        -webkit-appearance: none;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+    //  --- Thumb styling ---
+    input[type=range]::-moz-range-thumb {
+        @include thumb-style;
+        border: transparent;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        @include thumb-style;
+        -webkit-appearance: none;
+        margin-top: -.6rem;        
+    }    
+
+    // --- Track styling ---
+    input[type=range]::-moz-range-track {
+        @include track-style;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        @include track-style;
+    }
+}
