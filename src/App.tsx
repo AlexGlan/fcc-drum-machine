@@ -5,20 +5,30 @@ import { faFreeCodeCamp } from '@fortawesome/free-brands-svg-icons';
 import data from './data/pad-mappings.json';
 import DrumPad from './components/DrumPad';
 import ToggleSwitch from './components/ToggleSwitch';
+import Display from './components/Display';
 import './styles/App.scss';
 
 
 const App = () => {
     const [bankPosition, setBankPosition] = useState('left');
     const [isPowerOn, setPower] = useState(true);
+    const [lastPlayed, setLastPlayed] = useState('');
        
     const switchPower = (): void => {       
-        setPower(!isPowerOn);                      
+        setPower(!isPowerOn);
+        setLastPlayed('');                      
     }
 
     const switchBankPosition = (): void => {
         const newPosition: string = bankPosition === 'left' ? 'right' : 'left';
         setBankPosition(newPosition);
+
+        const newKit: string = newPosition === 'left' ? 'Heater Kit' : 'Smooth Piano Kit'
+        setLastPlayed(newKit);
+    }
+
+    const displayLastAction = (msg: string): void => {
+        setLastPlayed(msg);             
     }
     
     return (
@@ -39,11 +49,13 @@ const App = () => {
                                 name={name}
                                 audio={audio}
                                 power={isPowerOn}
+                                lastPlayed={displayLastAction}
                             />
                         })
                 }</div>
                 <div className='right-col'>
                     <ToggleSwitch onToggle={switchPower} isToggled={true} header='Power' />
+                    <Display message={lastPlayed}/>
                     <ToggleSwitch onToggle={switchBankPosition} isToggled={false} header='Bank' />
                 </div>
             </div>                       
