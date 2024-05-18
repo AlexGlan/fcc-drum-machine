@@ -4,10 +4,11 @@ import '../styles/DrumPad.scss';
 type DrumPadProps = {
     keyCap: string,
     name: string,
-    audio: string
+    audio: string,
+    power: boolean
 }
 
-const DrumPad = ({ keyCap, name, audio }: DrumPadProps): JSX.Element => {
+const DrumPad = ({ keyCap, name, audio, power }: DrumPadProps): JSX.Element => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [isActive, setActive] = useState(false);
 
@@ -16,31 +17,41 @@ const DrumPad = ({ keyCap, name, audio }: DrumPadProps): JSX.Element => {
         setTimeout(() => { setActive((prevValue) => !prevValue); }, 100); 
     }
 
-    const playAudio = (): void => {
-        if (audioRef.current) {    
+    const playAudio = (): void => {        
+        if (!power) {
+            playAnimation();
+            return;            
+        }else if (audioRef.current) {            
             playAnimation();
             audioRef.current.currentTime = 0;
             audioRef.current.play();            
-        }        
+        }       
     }
 
     const handleKeyDown = (e: KeyboardEvent): void => {
-        if (e.key === keyCap.toLowerCase()) {
+        if (e.key === keyCap.toLowerCase()) {            
             playAudio();
         }
     }
 
     useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown);        
+        document.addEventListener('keydown', handleKeyDown);    
+            
         return () => {
-            document.removeEventListener('keydown', handleKeyDown);            
+            document.removeEventListener('keydown', handleKeyDown);
         }
-    }, [])
+    }, [power])
         
-    return (
+    return (    
         <div
             onClick={ () => { playAudio(); } }
-            className={ isActive ? 'drum-pad active' : 'drum-pad' }
+            className={
+                isActive 
+                    ?  power
+                        ? 'drum-pad active'
+                        : 'drum-pad active-no-power'                
+                    : 'drum-pad'
+            }
             id={name}
         >
             <span>{keyCap}</span>

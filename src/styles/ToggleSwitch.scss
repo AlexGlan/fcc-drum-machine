@@ -1,0 +1,36 @@
+@use './' as *;
+
+.header {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.switch {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.slider {
+    cursor: pointer;
+    height: 1.5em;
+    width: 3.5em;
+    background-color: $clr-dark;
+    position: relative;
+}
+
+.slider::after {
+    content: '';
+    position: absolute;
+    top: .2em;
+    left: .25em;
+    height: 1.1em;
+    width: 1.3em;
+    background-color: $clr-blue;
+    transition: .1s ease-out;
+}
+
+.switch:checked + .slider::after {
+    left: calc(100% - .25em);
+    transform: translateX(-100%);
+}
