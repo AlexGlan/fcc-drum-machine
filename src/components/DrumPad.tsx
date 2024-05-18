@@ -19,8 +19,9 @@ const DrumPad = ({ keyCap, name, audio, power }: DrumPadProps): JSX.Element => {
 
     const playAudio = (): void => {        
         if (!power) {
+            playAnimation();
             return;            
-        }else  if (audioRef.current) {            
+        }else if (audioRef.current) {            
             playAnimation();
             audioRef.current.currentTime = 0;
             audioRef.current.play();            
@@ -41,10 +42,16 @@ const DrumPad = ({ keyCap, name, audio, power }: DrumPadProps): JSX.Element => {
         }
     }, [power])
         
-    return (
+    return (    
         <div
             onClick={ () => { playAudio(); } }
-            className={ isActive ? 'drum-pad active' : 'drum-pad' }
+            className={
+                isActive 
+                    ?  power
+                        ? 'drum-pad active'
+                        : 'drum-pad active-no-power'                
+                    : 'drum-pad'
+            }
             id={name}
         >
             <span>{keyCap}</span>
