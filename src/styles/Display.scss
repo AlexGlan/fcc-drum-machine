@@ -1,0 +1,14 @@
+@use './' as *;
+
+#display {
+    background-color: $clr-darker-gray;
+    height: 3.2rem;
+    width: 70%;
+    margin: 1rem 0;
+    padding: .6rem;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
