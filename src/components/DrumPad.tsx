@@ -5,10 +5,11 @@ type DrumPadProps = {
     keyCap: string,
     name: string,
     audio: string,
-    power: boolean
+    power: boolean,
+    lastPlayed: (msg: string) => void
 }
 
-const DrumPad = ({ keyCap, name, audio, power }: DrumPadProps): JSX.Element => {
+const DrumPad = ({ keyCap, name, audio, power, lastPlayed }: DrumPadProps): JSX.Element => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [isActive, setActive] = useState(false);
 
@@ -24,7 +25,8 @@ const DrumPad = ({ keyCap, name, audio, power }: DrumPadProps): JSX.Element => {
         }else if (audioRef.current) {            
             playAnimation();
             audioRef.current.currentTime = 0;
-            audioRef.current.play();            
+            audioRef.current.play();  
+            lastPlayed(name.replace(/-/, ' '));          
         }       
     }
 
