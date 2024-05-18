@@ -6,8 +6,9 @@ import data from './data/pad-mappings.json';
 import DrumPad from './components/DrumPad';
 import ToggleSwitch from './components/ToggleSwitch';
 import Display from './components/Display';
-import './styles/App.scss';
+import VolumeSlider from './components/VolumeSlider';
 
+import './styles/App.scss';
 
 const App = () => {
     const [bankPosition, setBankPosition] = useState('left');
@@ -56,6 +57,7 @@ const App = () => {
                 <div className='right-col'>
                     <ToggleSwitch onToggle={switchPower} isToggled={true} header='Power' />
                     <Display message={lastPlayed}/>
+                    <VolumeSlider />
                     <ToggleSwitch onToggle={switchBankPosition} isToggled={false} header='Bank' />
                 </div>
             </div>                       
