@@ -14,6 +14,7 @@ const App = () => {
     const [bankPosition, setBankPosition] = useState('left');
     const [isPowerOn, setPower] = useState(true);
     const [lastPlayed, setLastPlayed] = useState('');
+    const [volume, setVolume] = useState(0.5);
        
     const switchPower = (): void => {       
         setPower(!isPowerOn);
@@ -30,6 +31,18 @@ const App = () => {
 
     const displayLastAction = (msg: string): void => {
         setLastPlayed(msg);             
+    }
+
+    const changeVolume = (volume: string): void => {        
+        const newVolume: number = volume === '100' || volume === '0'
+            ? parseInt(volume[0])
+            : parseInt(volume) <= 10 
+                ? parseFloat('0.0' + volume)
+                : parseFloat('0.' + volume)
+
+        setVolume(newVolume);
+        displayLastAction(`Volume: ${volume}`);    
+        setTimeout(() => { displayLastAction(''); }, 800);        
     }
     
     return (
@@ -50,6 +63,7 @@ const App = () => {
                                 name={name}
                                 audio={audio}
                                 power={isPowerOn}
+                                volume={volume}
                                 lastPlayed={displayLastAction}
                             />
                         })
@@ -57,7 +71,7 @@ const App = () => {
                 <div className='right-col'>
                     <ToggleSwitch onToggle={switchPower} isToggled={true} header='Power' />
                     <Display message={lastPlayed}/>
-                    <VolumeSlider />
+                    <VolumeSlider handleChange={changeVolume}/>
                     <ToggleSwitch onToggle={switchBankPosition} isToggled={false} header='Bank' />
                 </div>
             </div>                       
