@@ -67,7 +67,8 @@ const App = () => {
                                 lastPlayed={displayLastAction}
                             />
                         })
-                }</div>
+                }
+                </div>
                 <div className='right-col'>
                     <ToggleSwitch onToggle={switchPower} isToggled={true} header='Power' />
                     <Display message={lastPlayed}/>
