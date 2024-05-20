@@ -9,14 +9,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 #drum-machine {
     background-color: $clr-light-gray;
-    width: 42rem;
-    height: 20.5rem;
-    padding: .5rem .5rem .5rem 1.2rem;
+    width: 90%;
+    max-width: 42rem;
+    min-height: 20.5rem;
+    padding: .5rem 1rem;
+    margin: 2.5rem 0;
     border: 5px solid $clr-accent;
 
     .top-bar {
@@ -41,15 +43,35 @@ body {
             margin-top: -.4rem;
             display: flex;
             flex-wrap: wrap;
-            width: 53%;
+            max-width: 22rem;
         }
 
         .right-col {
-            width: 47%;
+            width: 60%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }        
+    }    
+}
+
+@media (max-width: 740px) {
+    .top-bar {
+        margin-bottom: .8rem;
+    }
+
+    .container {
+        flex-direction: column;      
+        align-items: center;  
+
+        .left-col {
+            justify-content: center;
+            width: 100%;
+        }    
+        
+        .right-col {
+            margin: 1.5rem;
+        }
     }    
 }
