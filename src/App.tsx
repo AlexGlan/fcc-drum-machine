@@ -53,7 +53,8 @@ const App = () => {
             </div>
 
             <div className='container'>
-                <div className='left-col'>{
+                <div className='left-col'>
+                {
                     data.filter(pad => pad.bankPosition === bankPosition)
                         .map(pad => {
                             const {id, keyCap, name, audio} = pad;                            
