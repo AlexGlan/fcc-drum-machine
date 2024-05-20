@@ -31,3 +31,10 @@
 .active-no-power {
     @include press-animation;
 }
+
+@media (max-width: 414px) {
+    .drum-pad {
+        height: 4.3rem;
+        width: 4.5rem;
+    }
+}
