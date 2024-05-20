@@ -23,7 +23,7 @@ const DrumPad = ({ keyCap, name, audio, power, volume, lastPlayed }: DrumPadProp
         if (!power) {
             playAnimation();
             return;            
-        }else if (audioRef.current) {            
+        } else if (audioRef.current) {            
             playAnimation();
             audioRef.current.currentTime = 0;            
             audioRef.current.volume = volume;
