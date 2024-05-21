@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFreeCodeCamp } from '@fortawesome/free-brands-svg-icons';
 
@@ -10,11 +10,43 @@ import VolumeSlider from './components/VolumeSlider';
 
 import './styles/App.scss';
 
+type Pad = {
+    id: number,
+    keyCap: string,
+    name: string,
+    bankPosition: string,
+    audio: string
+}
+
 const App = () => {
     const [bankPosition, setBankPosition] = useState('left');
     const [isPowerOn, setPower] = useState(true);
     const [lastPlayed, setLastPlayed] = useState('');
     const [volume, setVolume] = useState(0.5);
+
+    const handleKeyDown = (e: KeyboardEvent): void => {
+        if (e.key.length > 1) {
+            return;            
+        }
+
+        const pad: Pad | undefined = data.find((pad: Pad) => {
+            return pad.keyCap.toLowerCase() === e.key && pad.bankPosition === bankPosition;
+        });
+
+        if (pad) {
+            document.getElementById(pad.name)?.click();
+        } else {
+            return;
+        }  
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+    }, [bankPosition])
        
     const switchPower = (): void => {       
         setPower(!isPowerOn);
@@ -55,8 +87,8 @@ const App = () => {
             <div className='container'>
                 <div className='left-col'>
                 {
-                    data.filter(pad => pad.bankPosition === bankPosition)
-                        .map(pad => {
+                    data.filter((pad: Pad) => pad.bankPosition === bankPosition)
+                        .map((pad: Pad) => {
                             const {id, keyCap, name, audio} = pad;                            
                             return <DrumPad
                                 key={id}

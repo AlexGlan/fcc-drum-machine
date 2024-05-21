@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import '../styles/DrumPad.scss';
 
 type DrumPadProps = {
@@ -15,36 +15,22 @@ const DrumPad = ({ keyCap, name, audio, power, volume, lastPlayed }: DrumPadProp
     const [isActive, setActive] = useState(false);
 
     const playAnimation = (): void => {
-        setActive(!isActive)
-        setTimeout(() => { setActive((prevValue) => !prevValue); }, 100); 
+        setActive(!isActive);
+        setTimeout(() => { setActive(prevValue => !prevValue); }, 100); 
     }
 
     const playAudio = (): void => {        
-        if (!power) {
-            playAnimation();
-            return;            
-        } else if (audioRef.current) {            
+        if (audioRef.current && power) {
             playAnimation();
             audioRef.current.currentTime = 0;            
             audioRef.current.volume = volume;
             audioRef.current.play();  
-            lastPlayed(name.replace(/-/, ' '));          
-        }       
+            lastPlayed(name.replace(/-/, ' '));      
+        } else {
+            playAnimation();
+            return;
+        }      
     }
-
-    const handleKeyDown = (e: KeyboardEvent): void => {
-        if (e.key === keyCap.toLowerCase()) {            
-            playAudio();
-        }
-    }
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown);            
-            
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);            
-        }
-    }, [power, volume])
         
     return (    
         <div
